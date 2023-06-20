@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './App.css'
 function NameList() {
   const [Names, setNames] = useState(["a", "b", "c", "d", "e"])
-  const [AddName, setAddName] = useState("")
+  const [AddName, setAddName] = useState(() =>"z")
   const addnewname = () => {
     //Names.push(AddName)
     setNames([...Names, AddName])
