@@ -5,8 +5,9 @@ function NameList() {
   const [Names, setNames] = useState(["a", "b", "c", "d", "e"])
   const [AddName, setAddName] = useState("")
   const addnewname = () => {
-    Names.push(AddName)
-    setList(Names)
+    //Names.push(AddName)
+    setNames([...Names, AddName])
+    setAddName("")
   }
   
   return(
