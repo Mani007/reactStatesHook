@@ -5,12 +5,12 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(10)
   function addone() {
-    count++;
+    setCount(count+1);
   }
 
   return (
     <>
-      <div>
+      <div className='App'>
         <button
          onClick={addone}>count = {count}</button>
       </div>
