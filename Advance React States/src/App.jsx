@@ -1,6 +1,22 @@
 import { useState } from 'react'
 
 import './App.css'
+function NameList() {
+  const [Names, setNames] = useState(["a", "b", "c", "d", "e"])
+  
+  return(
+    <>
+    <div>
+      <ul>
+        {Names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </div>
+    </>
+  )
+  
+}
 
 function Counter() {
   const [count, setCount] = useState(10)
@@ -22,7 +38,7 @@ function App() {
   return(
     <div>
       <Counter/>
-      <Counter/>
+      <NameList/>
     </div>
   )
 }
