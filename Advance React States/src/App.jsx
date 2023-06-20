@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 
-function App() {
+function Counter() {
   const [count, setCount] = useState(10)
   function addone() {
     setCount(count+1);
@@ -15,6 +15,15 @@ function App() {
          onClick={addone}>count = {count}</button>
       </div>
       </>
+  )
+}
+
+function App() {
+  return(
+    <div>
+      <Counter/>
+      <Counter/>
+    </div>
   )
 }
 
