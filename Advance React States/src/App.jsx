@@ -3,6 +3,10 @@ import { useState } from 'react'
 import './App.css'
 function NameList() {
   const [Names, setNames] = useState(["a", "b", "c", "d", "e"])
+  const [AddName, setAddName] = useState("")
+  const addnewname = () => {
+    Names.push(AddName)
+  }
   
   return(
     <>
@@ -12,6 +16,11 @@ function NameList() {
           <li key={name}>{name}</li>
         ))}
       </ul>
+      <input type="text" 
+      value={AddName}
+      onChange={(e) => setAddName(e.target.value)}
+      />
+    <button onClick={addnewname}> Add Name</button>
     </div>
     </>
   )
