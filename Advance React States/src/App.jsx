@@ -54,9 +54,13 @@ function App() {
  const [state, dispatch] = useReducer((state, action) => {
   switch(action.type) {
     case "SET_NAME":
-    //return {...state, name: action.payload}
-    state.name = action.payload
-    return state
+      return {...state, name: action.payload}
+    case "ADD_NAME":
+      return {...state, 
+      names: [...state.names, action.payload],
+      name: ""
+    }
+
   }
 
  },{
@@ -67,12 +71,18 @@ function App() {
     <div>
       {/* <Counter/>
       <NameList/> */}
+      <div>
+        {state.names.map((name, index) => {
+                <div key={index}> {name}</div>
+        })}   
+      </div>
       <label htmlFor="">Input text &nbsp;</label> 
       <input type="text"
       value={state.name} 
       onChange={e => dispatch({type: "SET_NAME", payload: e.target.value})}
       />
       <div>Name: {state.name}</div>
+      <button onClick={() => dispatch({type: "ADD_NAME"})}>Add Name</button>
     </div>
   )
 }
