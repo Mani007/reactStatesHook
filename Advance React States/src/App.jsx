@@ -54,7 +54,9 @@ function App() {
  const [state, dispatch] = useReducer((state, action) => {
   switch(action.type) {
     case "SET_NAME":
-    return {...state, name: action.payload}
+    //return {...state, name: action.payload}
+    state.name = action.payload
+    return state
   }
 
  },{
