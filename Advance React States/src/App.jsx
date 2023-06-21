@@ -57,7 +57,7 @@ function App() {
       return {...state, name: action.payload}
     case "ADD_NAME":
       return {...state, 
-      names: [...state.names, action.payload],
+      names: [...state.names, state.name],
       name: ""
     }
 
@@ -67,15 +67,16 @@ function App() {
     names: [],
     name: ""
   })
+  console.log(state.names)
   return(
     <div>
       {/* <Counter/>
       <NameList/> */}
-      <div>
-        {state.names.map((name, index) => {
-                <div key={index}> {name}</div>
-        })}   
-      </div>
+      <ul>
+         {state.names.map((name, index) => (
+          <li key={index}>{name}</li>
+       ))}
+     </ul>
       <label htmlFor="">Input text &nbsp;</label> 
       <input type="text"
       value={state.name} 
