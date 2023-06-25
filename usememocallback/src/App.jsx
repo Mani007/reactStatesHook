@@ -9,7 +9,7 @@ function App() {
     [number])
 
   const [names, setNames] = useState(['b','c','a','e','d'])  
-  const sortedNames = [...names].sort(); // duplicte copy is been sorted instead of original copy
+  const sortedNames = useMemo(() => [...names].sort(), [names]) // duplicte copy is been sorted instead of original copy
   return (
     <>
       <div>
