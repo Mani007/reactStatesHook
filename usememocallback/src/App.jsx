@@ -13,7 +13,7 @@ function App() {
   
   const [count1, setCount1] = useState(0)
   const [count2, setCount2] = useState(0)
-  const countTotal = useMemo(() => count1+count2, [count1,count2])
+  const countTotal =  count1+count2
   return (
     <>
       <div>
