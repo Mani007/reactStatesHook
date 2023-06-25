@@ -49,7 +49,33 @@ import './App.css'
 
 // USE REDUCER CODE BELOW FOR STATE MANAGEMENT
 
-function App() {
+function UserForm() {
+
+ const [state,dispatch] = useReducer((state,action) => ({
+    ...state,
+    ...action,
+  }), {
+    first: "",
+    last: ""
+  })
+  return (
+    <div>
+        <label htmlFor="">First Name &nbsp;</label>
+        <input type="text" value={state.first}
+        onChange={(e) => dispatch({first: e.target.value})}
+        /> <br />
+        <label htmlFor="">Last Name &nbsp;</label>
+        <input type="text" value={state.last}
+         onChange={(e) => dispatch({last: e.target.value})}
+        />
+        <div>
+          First is {state.first} <br />
+          Last is {state.last}
+        </div>
+    </div>
+  );
+}
+function NameList() {
 
  const [state, dispatch] = useReducer((state, action) => {
   switch(action.type) {
@@ -67,7 +93,7 @@ function App() {
     names: [],
     name: ""
   })
-  console.log(state.names)
+  //console.log(state.names)
   return(
     <div>
       {/* <Counter/>
@@ -87,5 +113,16 @@ function App() {
     </div>
   )
 }
+
+
+export const App = () => {
+  return (
+    <>
+    <UserForm/>
+    <NameList/>
+    </>
+  )
+}
+
 
 export default App
