@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 
 import './App.css'
-
+// for custom hook also useCallback hook is important
 function SortedList({ list, sortfunc}){
   console.log(list);
   const sortedList = useMemo(() => {
