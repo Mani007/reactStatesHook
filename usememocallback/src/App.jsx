@@ -6,7 +6,7 @@ function SortedList({ list, sortfunc}){
   console.log(list);
   const sortedList = useMemo(() => {
     console.log("running sorting");
-    return [...list].sort(sortfunc);},
+    return [...list].sort(sortfunc)},
      [list, sortfunc]);
     console.log(sortedList)
   return (
@@ -20,13 +20,13 @@ function App() {
     () => number.reduce((acc, number)=> acc+number,0),
     [number])
 
-  const [names, setNames] = useState(['b','c','a','d','e'])  
+  const [names, setNames] = useState(['bam','ccam','am','dam','es'])  
   const sortedNames = useMemo(() => [...names].sort(), [names]) // duplicte copy is been sorted instead of original copy
   
   const [count1, setCount1] = useState(0)
   const [count2, setCount2] = useState(0)
   const countTotal =  count1+count2
-  const sortFunc = (a,b) => {a.localeCompare(b)}
+  const sortFunc = useCallback((a,b) => a.localeCompare(b),[]);
   return (
     <>
       <div>
