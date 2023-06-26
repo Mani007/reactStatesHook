@@ -7,7 +7,7 @@ function SortedList({ list, sortfunc}){
   const sortedList = useMemo(() => {
     console.log("running sorting");
     return [...list].sort(sortfunc);},
-     [list]);
+     [list, sortfunc]);
     console.log(sortedList)
   return (
     <div> Sorted List from the function: {sortedList.join(',')}</div>
