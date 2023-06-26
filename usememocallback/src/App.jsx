@@ -13,7 +13,7 @@ function SortedList({ list, sortfunc}){
     <div> Sorted List from the function: {sortedList.join(',')}</div>
   );
 }
-
+// useCallback are essential for nested component calling. MAKE SURE THAT
 function App() {
   const [number, setNumber] = useState([10,20,30])
   const  total = useMemo(
