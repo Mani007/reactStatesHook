@@ -3,9 +3,14 @@ import { useState, useMemo, useCallback } from 'react'
 import './App.css'
 
 function SortedList({ list}){
-  const sortedList = useMemo(() => [...list].sort(), [list])
+  console.log(list);
+  const sortedList = useMemo(() => {
+    console.log("running sorting");
+    return [...list].sort();},
+     [list]);
+    console.log(sortedList)
   return (
-    <div> {sortedList.join(',')}</div>
+    <div> Sorted List from the function: {sortedList.join(',')}</div>
   );
 }
 
@@ -15,7 +20,7 @@ function App() {
     () => number.reduce((acc, number)=> acc+number,0),
     [number])
 
-  const [names, setNames] = useState(['b','c','a','e','d'])  
+  const [names, setNames] = useState(['b','c','a','d','e'])  
   const sortedNames = useMemo(() => [...names].sort(), [names]) // duplicte copy is been sorted instead of original copy
   
   const [count1, setCount1] = useState(0)
