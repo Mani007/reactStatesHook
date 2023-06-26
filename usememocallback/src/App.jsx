@@ -1,6 +1,13 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 
 import './App.css'
+
+function SortedList({ list}){
+  const sortedList = useMemo(() => [...list].sort(), [list])
+  return (
+    <div> {sortedList.join(',')}</div>
+  );
+}
 
 function App() {
   const [number, setNumber] = useState([10,20,30])
@@ -23,7 +30,7 @@ function App() {
         Names: {...names.join(',')}   
       </div> <br />
       <div>
-        Sorted Names: {sortedNames.join(',')}
+        <SortedList list={names}/>
       </div> <br />
       <div>
         <button onClick={() => setCount1(count1+1)}>Count 1: {count1}</button>
