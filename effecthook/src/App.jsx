@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react'
 
 import './App.css'
 
+const Stopwatch = () => {
+  const [time, setTime] = useState(0)
+  setInterval(() => {
+    setTime(time+1)
+  },1000)
+  return (
+    <div> time is {time}</div>
+  )
+}
+
 function App() {
   const [names, setNames] = useState([])
   useEffect(() => {
@@ -24,6 +34,7 @@ function App() {
 
   return (
     <>
+      <Stopwatch/>
       <div>
        Names are: {names.map((name) => 
        <button onClick={
