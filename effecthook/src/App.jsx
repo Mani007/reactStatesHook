@@ -11,11 +11,18 @@ function App() {
   }, [])
   
 
+  const [selectedNames,setSelectedNames ] = useState(null)
+
   return (
     <>
       <div>
-       Names are: {names.join(",")}
+       Names are: {names.map((name) => 
+       <button onClick={
+        () => setSelectedNames(name)
+       }>{name}</button>)
+       }
       </div>
+      <div>You have selected : {selectedNames}</div>
       
     </>
   )
