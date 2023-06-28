@@ -12,9 +12,11 @@ function App() {
   const [selectedNames,setSelectedNames ] = useState(null)
   const [selectedNamesDetails,setSelectedNamesDetails ] = useState(null)
   useEffect(() => {
+    if (selectedNames) {
     fetch(`/${selectedNames}.json`)
   .then(response => response.json())
   .then(data => setSelectedNamesDetails(data))
+  }
   }, [selectedNames])
   
 
