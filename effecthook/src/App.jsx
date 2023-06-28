@@ -4,9 +4,11 @@ import './App.css'
 
 const Stopwatch = () => {
   const [time, setTime] = useState(0)
-  setInterval(() => {
+  useEffect(() => 
+  {setInterval(() => {
     setTime(time+1)
-  },1000)
+  },1000)}
+  ,[])
   return (
     <div> time is {time}</div>
   )
