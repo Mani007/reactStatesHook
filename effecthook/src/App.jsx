@@ -9,27 +9,29 @@ function App() {
   .then(response => response.json())
   .then(data => setNames(data))
   }, [])
-  const [selectedNames,setSelectedNames ] = useState(null)
+  //const [selectedNames,setSelectedNames ] = useState(null)
   const [selectedNamesDetails,setSelectedNamesDetails ] = useState(null)
-  useEffect(() => {
-    if (selectedNames) {
-    fetch(`/${selectedNames}.json`)
+  // useEffect(() => {
+  //   if (selectedNames) {
+    
+  // }
+  // }, [selectedNames])
+  const onSelectNames = (name) => {
+  fetch(`/${name}.json`)
   .then(response => response.json())
   .then(data => setSelectedNamesDetails(data))
   }
-  }, [selectedNames])
-  
 
   return (
     <>
       <div>
        Names are: {names.map((name) => 
        <button onClick={
-        () => setSelectedNames(name)
+        () => onSelectNames(name)
        }>{name}</button>)
        }
       </div>
-      <div>You have selected : {selectedNames}</div> <br />
+      {/* <div>You have selected : {selectedNames}</div> <br /> */}
       <div>Details are {JSON.stringify(selectedNamesDetails)}</div>
       
     </>
