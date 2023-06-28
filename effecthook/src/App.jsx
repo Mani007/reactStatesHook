@@ -9,9 +9,14 @@ function App() {
   .then(response => response.json())
   .then(data => setNames(data))
   }, [])
-  
-
   const [selectedNames,setSelectedNames ] = useState(null)
+  const [selectedNamesDetails,setSelectedNamesDetails ] = useState(null)
+  useEffect(() => {
+    fetch(`/${selectedNames}.json`)
+  .then(response => response.json())
+  .then(data => setSelectedNamesDetails(data))
+  }, [selectedNames])
+  
 
   return (
     <>
@@ -22,7 +27,8 @@ function App() {
        }>{name}</button>)
        }
       </div>
-      <div>You have selected : {selectedNames}</div>
+      <div>You have selected : {selectedNames}</div> <br />
+      <div>Details are {JSON.stringify(selectedNamesDetails)}</div>
       
     </>
   )
