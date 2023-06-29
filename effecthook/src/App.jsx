@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react'
 
 import './App.css'
-
+// Use of arrow fuction instead of the direct value change
 const Stopwatch = () => {
   const [time, setTime] = useState(0)
   useEffect(() => 
-  {setInterval(() => {
-    setTime(time+1)
-  },1000)}
+  {
+    const interval = setInterval(() => {
+    //console.log(time)
+    setTime((t) => {
+    //console.log(t);
+    return t+1;
+  });
+  },1000);
+return () => clearInterval(interval)} // cleanup function
   ,[])
   return (
     <div> time is {time}</div>
@@ -39,7 +45,7 @@ function App() {
       <Stopwatch/>
       <div>
        Names are: {names.map((name) => 
-       <button onClick={
+       <button  onClick={
         () => onSelectNames(name)
        }>{name}</button>)
        }
