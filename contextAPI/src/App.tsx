@@ -24,12 +24,20 @@ function usePokemon(){
   }, [])
   return {pokemon}}
 
+  const PokemonList = ({pokemon}: {pokemon: Pokemon[]}) => {
+   return( <div>
+      {pokemon.map((p)=>(
+        <div key={p.id}> {p.name}</div>
+      ))}
+    </div>
+   )
+  }
   function App() {
     const {pokemon} = usePokemon()
   return (
     <>
       <div>
-        {JSON.stringify(pokemon)}
+        <PokemonList pokemon={pokemon}/>
       </div>
       
     </>
