@@ -1,16 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+interface Pokemon {
+  id: number;
+  name: string;
+  type: string[];
+  hp: number;
+  attack: number;
+  defense: number;
+  special_attack: number;
+  special_defense: number;
+  speed: number;
+}
 
+// creating custome hook
+function usePokemon(){
+  const [pokemon, setPokemon] = useState<Pokemon[]>([])
+  useEffect(()=>{
+      fetch("/pokemon.json")
+        .then((response) => response.json())
+        .then((data) => setPokemon(data))
+  }, [])
+  return {pokemon}}
+
+  function App() {
+    const {pokemon} = usePokemon()
   return (
     <>
       <div>
-        hello in Typescript Context api
-      
+        {JSON.stringify(pokemon)}
       </div>
       
     </>
