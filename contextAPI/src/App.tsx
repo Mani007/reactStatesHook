@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 
 import './App.css'
 
@@ -25,20 +25,26 @@ function usePokemon():{pokemon: Pokemon[]}{
   return {pokemon}}
 
   const PokemonList = ({pokemon}: {pokemon: Pokemon[]}):React.ReactElement => {
+   const theme = useContext(ThemeContext); // use of context
    return( <div>
+    <div>The THEME is {theme}</div>
       {pokemon.map((p)=>(
         <div key={p.id}> {p.name}</div>
       ))}
     </div>
    )
   }
-  // Prop drilling is used here
+
+  const ThemeContext = createContext("Light")
+  // Applying context API
   function App() {
     const {pokemon} = usePokemon()
   return (
     <>
       <div>
+        <ThemeContext.Provider value='dark'>
         <PokemonList pokemon={pokemon}/>
+        </ThemeContext.Provider>
       </div>
       
     </>
