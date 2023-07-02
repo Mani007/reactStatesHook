@@ -37,10 +37,10 @@ function usePokemonSource():{pokemon: Pokemon[]}{
     </div>
    )
   }
-
+// Understanding types here is vital
   const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
     {} as unknown as ReturnType<typeof usePokemonSource>)
-  // Applying context API
+  // handling the undefined part of source code
   function App() {
     //const {pokemon} = usePokemon()
   return (
