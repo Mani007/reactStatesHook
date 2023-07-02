@@ -32,6 +32,7 @@ function usePokemon():{pokemon: Pokemon[]}{
     </div>
    )
   }
+  // Prop drilling is used here
   function App() {
     const {pokemon} = usePokemon()
   return (
