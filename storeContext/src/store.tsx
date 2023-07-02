@@ -45,7 +45,7 @@ interface Pokemon {
             type: "setPokemon",
             payload: data}))
     }, [])
-
+// useCallack is essential in custom hooks whenever we are returning a function
     const setSearch = useCallback((search: string) => {
       dispatch({
         type: "setSearch",
