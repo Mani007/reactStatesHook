@@ -11,7 +11,7 @@ interface Pokemon {
     speed: number;
   }
 // creating custome hook
-export function usePokemonSource():{pokemon: Pokemon[]}{
+ function usePokemonSource():{pokemon: Pokemon[]}{
     const [pokemon, setPokemon] = useState<Pokemon[]>([])
     useEffect(()=>{
         fetch("/pokemon.json")
@@ -20,11 +20,24 @@ export function usePokemonSource():{pokemon: Pokemon[]}{
     }, [])
     return {pokemon}}
 
-export const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
+ const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
         {} as unknown as ReturnType<typeof usePokemonSource>)
 
 export function usePokemon(){
         return useContext(PokemonContext)
       }
 
-    
+export function PokemonProvider({
+    children,}:{ children: React.ReactNode} ) {
+        //const {pokemon} = usePokemon()
+      return (
+        <>
+          <div>
+            <PokemonContext.Provider value={usePokemonSource()}>
+            {children}
+            </PokemonContext.Provider>
+          </div>
+          
+        </>
+      )
+    }

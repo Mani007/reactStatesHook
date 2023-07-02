@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import {usePokemon, usePokemonSource, PokemonContext} from './store'
+import {usePokemon, PokemonProvider} from './store'
 import './App.css'
 
 
@@ -19,9 +19,9 @@ import './App.css'
   return (
     <>
       <div>
-        <PokemonContext.Provider value={usePokemonSource()}>
+        <PokemonProvider>
         <PokemonList />
-        </PokemonContext.Provider>
+        </PokemonProvider>
       </div>
       
     </>
