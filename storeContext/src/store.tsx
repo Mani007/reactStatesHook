@@ -1,4 +1,4 @@
-import { useReducer ,useState, useEffect, createContext, useContext, useCallback } from 'react'
+import { useReducer ,useState, useMemo, useEffect, createContext, useContext, useCallback } from 'react'
 interface Pokemon {
     id: number;
     name: string;
@@ -10,6 +10,8 @@ interface Pokemon {
     special_defense: number;
     speed: number;
   }
+
+  
 // creating custome hook
  function usePokemonSource():{
   pokemon: Pokemon[],
@@ -53,7 +55,11 @@ interface Pokemon {
       })
 },[])
 
-    return {pokemon, search, setSearch}}
+const filteredPokemon = useMemo(()=>{
+  return pokemon.filter((p) => p.name.includes(search))
+}, [pokemon, search])
+
+    return {pokemon: filteredPokemon, search, setSearch}}
 
  const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
         {} as unknown as ReturnType<typeof usePokemonSource>)
