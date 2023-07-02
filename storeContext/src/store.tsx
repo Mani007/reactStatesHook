@@ -59,7 +59,12 @@ const filteredPokemon = useMemo(()=>{
   return pokemon.filter((p) => p.name.toLocaleLowerCase().includes(search)).slice(0,20)
 }, [pokemon, search])
 
-    return {pokemon: filteredPokemon, search, setSearch}}
+
+const sortedPokemon = useMemo(
+  () => [...filteredPokemon].sort((a, b) => a.name.localeCompare(b.name)),
+  [filteredPokemon]
+);
+    return {pokemon: sortedPokemon, search, setSearch}}
 
  const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
         {} as unknown as ReturnType<typeof usePokemonSource>)
