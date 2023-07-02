@@ -24,10 +24,10 @@ function usePokemon():{pokemon: Pokemon[]}{
   }, [])
   return {pokemon}}
 
-  const PokemonList = ({pokemon}: {pokemon: Pokemon[]}):React.ReactElement => {
-   const theme = useContext(ThemeContext); // use of context
+  const PokemonList = ():React.ReactElement => {
+  const {pokemon} = useContext(PokemonContext); // use of context
    return( <div>
-    <div>The THEME is {theme}</div>
+    {/* <div>The THEME is {theme}</div> */}
       {pokemon.map((p)=>(
         <div key={p.id}> {p.name}</div>
       ))}
@@ -35,16 +35,18 @@ function usePokemon():{pokemon: Pokemon[]}{
    )
   }
 
-  const ThemeContext = createContext("Light")
+  const PokemonContext = createContext({
+    pokemon: [] as Pokemon[]   // empty array as interface of Pokemon
+  })
   // Applying context API
   function App() {
-    const {pokemon} = usePokemon()
+    //const {pokemon} = usePokemon()
   return (
     <>
       <div>
-        <ThemeContext.Provider value='dark'>
-        <PokemonList pokemon={pokemon}/>
-        </ThemeContext.Provider>
+        <PokemonContext.Provider value={usePokemon()}>
+        <PokemonList />
+        </PokemonContext.Provider>
       </div>
       
     </>
