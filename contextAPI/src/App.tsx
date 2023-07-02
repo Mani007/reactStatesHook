@@ -15,7 +15,7 @@ interface Pokemon {
 }
 
 // creating custome hook
-function usePokemon():{pokemon: Pokemon[]}{
+function usePokemonSource():{pokemon: Pokemon[]}{
   const [pokemon, setPokemon] = useState<Pokemon[]>([])
   useEffect(()=>{
       fetch("/pokemon.json")
@@ -24,8 +24,11 @@ function usePokemon():{pokemon: Pokemon[]}{
   }, [])
   return {pokemon}}
 
+  function usePokemon(){
+    return useContext(PokemonContext)
+  }
   const PokemonList = ():React.ReactElement => {
-  const {pokemon} = useContext(PokemonContext); // use of context
+  const {pokemon} = usePokemon(); // use of context
    return( <div>
     {/* <div>The THEME is {theme}</div> */}
       {pokemon.map((p)=>(
@@ -35,16 +38,15 @@ function usePokemon():{pokemon: Pokemon[]}{
    )
   }
 
-  const PokemonContext = createContext({
-    pokemon: [] as Pokemon[]   // empty array as interface of Pokemon
-  })
+  const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
+    {} as unknown as ReturnType<typeof usePokemonSource>)
   // Applying context API
   function App() {
     //const {pokemon} = usePokemon()
   return (
     <>
       <div>
-        <PokemonContext.Provider value={usePokemon()}>
+        <PokemonContext.Provider value={usePokemonSource()}>
         <PokemonList />
         </PokemonContext.Provider>
       </div>
