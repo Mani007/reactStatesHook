@@ -56,7 +56,7 @@ interface Pokemon {
 },[])
 
 const filteredPokemon = useMemo(()=>{
-  return pokemon.filter((p) => p.name.includes(search)).slice(0,20)
+  return pokemon.filter((p) => p.name.toLocaleLowerCase().includes(search)).slice(0,20)
 }, [pokemon, search])
 
     return {pokemon: filteredPokemon, search, setSearch}}
