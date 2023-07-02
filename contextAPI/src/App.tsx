@@ -15,7 +15,7 @@ interface Pokemon {
 }
 
 // creating custome hook
-function usePokemon(){
+function usePokemon():{pokemon: Pokemon[]}{
   const [pokemon, setPokemon] = useState<Pokemon[]>([])
   useEffect(()=>{
       fetch("/pokemon.json")
@@ -24,7 +24,7 @@ function usePokemon(){
   }, [])
   return {pokemon}}
 
-  const PokemonList = ({pokemon}: {pokemon: Pokemon[]}) => {
+  const PokemonList = ({pokemon}: {pokemon: Pokemon[]}):React.ReactElement => {
    return( <div>
       {pokemon.map((p)=>(
         <div key={p.id}> {p.name}</div>
