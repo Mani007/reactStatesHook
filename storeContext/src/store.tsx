@@ -1,4 +1,4 @@
-import { useReducer ,useState, useMemo, useEffect, createContext, useContext, useCallback } from 'react'
+import { useReducer ,useState , useMemo, useEffect, createContext, useContext, useCallback } from 'react'
 interface Pokemon {
     id: number;
     name: string;
